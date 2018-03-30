@@ -109,12 +109,65 @@ def play_with_strings():
     lst = ['something', 222]
     print(f"{lst[0]} then {lst[1]}")
 
+def learn_args(*args, **kwargs):
+    print(args)
+    print(kwargs)
+
+def play_with_args():
+    learn_args()
+    learn_args(1)
+    learn_args(2,'asd', bob='jane')
+    learn_args(bill='will')
+
+    lst = ['asd',23,2.3]
+    dic = {'name':'bob', 'age':34}
+    learn_args(*lst, **dic)
+    
+def a_generator(lst_of_nums):
+    for n in lst_of_nums:
+        yield n+1
+
+def play_with_generators():
+    a_list = [1,2,3,4,5,6]
+
+    for a in a_generator(a_list):
+        print(a)
+
+    a_gen = (n*n for n in a_list)
+    for b in a_gen:
+        print(b)
+
+def learn_list_comprehension():
+    a_list = [1,2,3,4,5,6,7,8,9,10,11,12]
+
+    a_new_list = [n*n for n in a_list]
+    print(a_new_list)
+
+    print([n for n in a_list if n%2 == 0])
+
+    def numTest(num, divi):
+        return num % divi == 0
+
+    print([n for n in a_list if numTest(n,3)])
+
+    print([(a,b) for a in 'qwerty' for b in range(3,6)])
+
+    another_list = ['a','b','c','d']
+    a_dic = {name: val for val, name in zip(a_list, another_list) if val != 2}
+    print(a_dic)
+    
+    # set example
+    print({n for n in [1,2,3,4,5,6,7,8,9,0,9,8,7,6,5,4,3,2,1]})
+
 if __name__ == '__main__':
 
     # learn_dictionaries()
     # learn_sets()
     # learn_lists()
-    play_with_strings()
+    # play_with_strings()
+    # play_with_args()
+    # play_with_generators()
+    learn_list_comprehension()
 
     # stuff = doStuff()
     # stuff.start()
