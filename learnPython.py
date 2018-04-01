@@ -39,6 +39,27 @@ def my_first_decorator(func):
         print("called func")
     return wrap
 
+def args_test_decorator(func):
+    def wrap(*args):
+        print(args)
+        if args[0] != 1:
+            print("First arg needs to be of value 1")
+            return None
+        else:
+            print("First arg is 1")
+            return func(*args)
+    return wrap
+
+@args_test_decorator
+def args_test_func(num):
+    print('We can assume the arg has been check to be 1')
+    return num + num
+
+def learn_decorators():
+    print(f'--> {args_test_func(0)}')
+    print(f'--> {args_test_func(1)}')
+    print(f'--> {args_test_func(2)}')
+
 @my_first_decorator
 def learn_lists():
 
@@ -167,7 +188,8 @@ if __name__ == '__main__':
     # play_with_strings()
     # play_with_args()
     # play_with_generators()
-    learn_list_comprehension()
+    # learn_list_comprehension()
+    learn_decorators()
 
     # stuff = doStuff()
     # stuff.start()
